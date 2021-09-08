@@ -22,7 +22,7 @@ import java.util.Optional;
 @Configuration
 @EnableWebSecurity
 @EnableJpaAuditing
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -36,15 +36,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 csrf().disable().
                 authorizeRequests().
                 antMatchers("/auth/**").permitAll().
-                antMatchers("/public/**").permitAll().
                 anyRequest().
                 authenticated().
                 and().
                 sessionManagement().
                 sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+        http.exceptionHandling();
         http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.exceptionHandling().authenticationEntryPoint(customEntryPoint);
+
+//        http.exceptionHandling().authenticationEntryPoint(customEntryPoint);
+
 
 //        .authenticationEntryPoint((request, response, e)
 //                -> {

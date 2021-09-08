@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
@@ -21,7 +22,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -53,6 +54,9 @@ public class User implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "role")
     private Role role;
+
+    @OneToOne(mappedBy = "user")
+    private PasswordResetToken passwordResetToken;
 
     public User(String ssn, String firstname, String lastname, String address, String mobilePhoneNumber, String email, String password) {
         this.ssn = ssn;

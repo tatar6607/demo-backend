@@ -94,6 +94,11 @@ public class UserServiceImpl implements UserService, UserDetailsService, Applica
     }
 
     @Override
+    public User getUserBySSN(String ssn) {
+        return (User) loadUserByUsername(ssn);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String ssn) throws UsernameNotFoundException {
         User user = userRepository.findBySsn(ssn).orElseThrow(
                 () -> new UsernameNotFoundException("Error : Username not found " + ssn)

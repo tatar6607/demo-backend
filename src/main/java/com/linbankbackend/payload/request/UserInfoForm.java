@@ -1,6 +1,5 @@
 package com.linbankbackend.payload.request;
 
-
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -9,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
-public class RegisterForm {
+public class UserInfoForm {
 
     @NotBlank(message = "SSN must be not null")
     private String ssn;
@@ -33,16 +32,5 @@ public class RegisterForm {
     @NotBlank
     @Email(message = "Please enter a valid email")
     private String email;
-
-    @NotBlank
-    @Size(min = 7, max = 50, message = "Password least 6 characters long - max 50 ")
-    private String password;
-
-    @NotBlank
-    @Size(min = 7, max = 50, message = "Confirm password least 6 characters long - max 50 ")
-    private String secondPassword;
-
-
-
 
 }

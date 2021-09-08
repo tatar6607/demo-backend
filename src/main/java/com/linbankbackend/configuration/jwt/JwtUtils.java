@@ -45,6 +45,12 @@ public class JwtUtils {
       Map<String, Object> claims = new HashMap<>();
       return createToken(claims, user.getSsn());
    }
+   // direkt user ile
+   public String generateToken(User user) {
+      Map<String, Object> claims = new HashMap<>();
+      return createToken(claims, user.getSsn());
+   }
+
    private String createToken(Map<String, Object> claims, String subject) {
       Calendar issuedCalendar = Calendar.getInstance();
       Calendar expiredCalendar = Calendar.getInstance();
